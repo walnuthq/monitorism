@@ -43,7 +43,7 @@
 
 ## 0. TECHNICAL VISION: WHY YAML + EXPR-LANG + GO
 
-Our core thesis is simple: combine YAML configuration with expr-lang expressions and Go's performance to create a monitoring platform that is 10x easier to use than custom code â€” without locking users into a proprietary language like Hexagate's .gate.
+Our core thesis is simple: combine YAML configuration with expr-lang expressions and Go's performance to create a monitoring platform that is 10x easier to use than custom code — without locking users into a proprietary language like Hexagate's .gate.
 
 ### 0.1 The Problem with Hexagate's .gate Language
 
@@ -174,7 +174,7 @@ YAML is the de facto standard for infrastructure and security configuration:
 | YARA-L | Security (Chronicle) | Yes - Detection rules |
 | Terraform | DevOps | HCL (similar syntax) |
 
-Your security team already knows YAML. Zero learning curve for the config format â€” they only need to learn the Walnut DSL fields, not a new language syntax.
+Your security team already knows YAML. Zero learning curve for the config format — they only need to learn the Walnut DSL fields, not a new language syntax.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -418,7 +418,7 @@ operations (balance checks, threshold comparisons, gas calculations) are common.
 Walnut Monitoring is a **universal blockchain security monitoring platform** designed for **any EVM-compatible chain** with native support for L2 rollups, cross-chain bridges, and multi-chain ecosystems. The platform combines:
 
 - **Declarative YAML-based DSL** for monitor configuration (no custom code required)
-- **Native cross-chain correlation** (L1â†”L2, L2â†”L2, heterogeneous chains)
+- **Native cross-chain correlation** (L1↔L2, L2↔L2, heterogeneous chains)
 - **Real-time and pattern-based alerting** with sub-second latency
 - **Threat intelligence integration** for proactive security
 - **Self-hosted or managed deployment** options
@@ -438,16 +438,16 @@ Walnut Monitoring is a **universal blockchain security monitoring platform** des
 
 ### 1.3 Primary Value Proposition
 
-**"10x faster monitor creation with native cross-chain correlation and state validation â€” without vendor lock-in."**
+**"10x faster monitor creation with native cross-chain correlation and state validation — without vendor lock-in."**
 
 Why 10x Faster?
-- YAML = Zero config learning curve â€” Your SRE/Security team already knows YAML from Kubernetes, Prometheus, Falco, Sigma
-- No code required â€” Unlike OP Monitorism (Go) or Forta (TypeScript/Python)
-- No proprietary language â€” Unlike Hexagate (Gatelang)
-- expr-lang = familiar â€” JavaScript-like expressions, not a new syntax to learn
+- YAML = Zero config learning curve — Your SRE/Security team already knows YAML from Kubernetes, Prometheus, Falco, Sigma
+- No code required — Unlike OP Monitorism (Go) or Forta (TypeScript/Python)
+- No proprietary language — Unlike Hexagate (Gatelang)
+- expr-lang = familiar — JavaScript-like expressions, not a new syntax to learn
 
 Validated by Optimism Foundation (First Design Partner):
-*"Fix cross-chain L1â†”L2 correlation and make monitor creation 10x easier"* â€” Josep, Optimism Foundation
+*"Fix cross-chain L1↔L2 correlation and make monitor creation 10x easier"* — Josep, Optimism Foundation
 
 ---
 
@@ -455,7 +455,7 @@ Validated by Optimism Foundation (First Design Partner):
 
 ### 2.1 The Problem
 
-Modern blockchain ecosystems â€” **L2 rollups, cross-chain bridges, DeFi protocols** â€” face **critical security and operational challenges**:
+Modern blockchain ecosystems — **L2 rollups, cross-chain bridges, DeFi protocols** — face **critical security and operational challenges**:
 
 #### Universal Challenges (All Chains)
 - **Cross-chain correlation**: Events on L1 must be correlated with L2 state (and vice versa)
@@ -505,7 +505,7 @@ Modern blockchain ecosystems â€” **L2 rollups, cross-chain bridges, DeFi pr
 
 | Segment | Key Pain Points | Why Walnut |
 |---------|-----------------|------------|
-| **L2 Rollups** | Cross-chain correlation, fault proof monitoring, state validation | Native L1â†”L2 correlation, eth_getProof |
+| **L2 Rollups** | Cross-chain correlation, fault proof monitoring, state validation | Native L1↔L2 correlation, eth_getProof |
 | **Bridge Operators** | Multi-chain event correlation, security monitoring | Cross-chain DSL, multiple network support |
 | **DeFi Protocols** | Cross-chain liquidity monitoring, exploit detection | Real-time alerts, threat intel integration |
 | **Exchanges** | Compliance, threat intel, audit trails | Pluggable threat intel, self-hosted option |
@@ -624,19 +624,19 @@ Modern blockchain ecosystems â€” **L2 rollups, cross-chain bridges, DeFi pr
 
 ### 4.3 Data Flow
 
-1. **Block arrives** â†’ Network Subscriber receives via WebSocket (`eth_subscribe newHeads`)
-2. **Block + Transactions + Logs** â†’ Kafka Block Event Topic
-3. **Event Router** â†’ Matches against indexed DSL rules (Bloom filter pre-check)
-4. **Matched events** â†’ Enriched with threat intel (Phase 1: basic, Phase 3: full) â†’ Alert Service
-5. **Alert Service** â†’ Evaluates complex conditions (including cross-chain correlation for Phase 1 critical monitors) â†’ Creates AlertExecutionLog
-6. **AlertExecutionLog** â†’ Kafka Alert Topic â†’ Delivery Channel Service
-7. **Delivery** â†’ Slack/Telegram/PagerDuty/Webhook
+1. **Block arrives** → Network Subscriber receives via WebSocket (`eth_subscribe newHeads`)
+2. **Block + Transactions + Logs** → Kafka Block Event Topic
+3. **Event Router** → Matches against indexed DSL rules (Bloom filter pre-check)
+4. **Matched events** → Enriched with threat intel (Phase 1: basic, Phase 3: full) → Alert Service
+5. **Alert Service** → Evaluates complex conditions (including cross-chain correlation for Phase 1 critical monitors) → Creates AlertExecutionLog
+6. **AlertExecutionLog** → Kafka Alert Topic → Delivery Channel Service
+7. **Delivery** → Slack/Telegram/PagerDuty/Webhook
 
 **Mempool Flow (Phase 2+):**
-- **Pending transactions** â†’ Network Subscriber receives via WebSocket (`eth_subscribe newPendingTransactions`)
-- **Mempool events** â†’ Kafka Mempool Event Topic
-- **Event Router** â†’ Applies same DSL filters (with `source: mempool`)
-- **Matched mempool events** â†’ Alert Service (for proactive detection)
+- **Pending transactions** → Network Subscriber receives via WebSocket (`eth_subscribe newPendingTransactions`)
+- **Mempool events** → Kafka Mempool Event Topic
+- **Event Router** → Applies same DSL filters (with `source: mempool`)
+- **Matched mempool events** → Alert Service (for proactive detection)
 
 ---
 
@@ -727,7 +727,7 @@ alert:
 
 #### `cross_chain`
 - **Explicit correlation** between events on different chains
-- Supports L1â†”L2, L2â†”L2, heterogeneous (EVMâ†”Solana)
+- Supports L1↔L2, L2↔L2, heterogeneous (EVM↔Solana)
 - Positive mode: both events must occur
 - Negative mode: event A occurs, event B must NOT occur within window
 
@@ -1582,7 +1582,7 @@ Before diving into examples, here's what each YAML monitor contains:
 | `rule_kind: realtime` | Alert immediately when event matches |
 | `rule_kind: windowed` | Aggregate events over time window |
 | `type: single_chain` | Monitor events on one chain (can be multiple networks) |
-| `type: cross_chain` | Correlate events across different chains (e.g., L1â†”L2) |
+| `type: cross_chain` | Correlate events across different chains (e.g., L1↔L2) |
 | `eventEmitted` | Match smart contract event by name and indexed args |
 | `logEmitted` | Match raw log by topics (for unverified contracts) |
 | `correlation: positive` | Both events must occur to trigger |
@@ -1606,7 +1606,7 @@ These YAML examples use Optimism contract addresses as reference. To adapt for o
 | Polygon | RootChainManager | RootChainManagerProxy |
 
 Monitors 6.1 and 6.2 require cross-chain correlation and `eth_getProof` 
-state validation â€” capabilities included in Phase 1 for critical security. Full cross-chain expands in Phase 2.
+state validation — capabilities included in Phase 1 for critical security. Full cross-chain expands in Phase 2.
 
 ---
 
@@ -1620,7 +1620,7 @@ withdrawal drains the bridge. This monitor MUST work from day 1.
 1. TRIGGER: Listen for WithdrawalProven event on L1 (OptimismPortal contract)
 2. VALIDATE: Query L2 state using eth_getProof to check if withdrawal exists
 3. CORRELATE: Match withdrawal hash from L1 event with L2 storage
-4. ALERT: If L2 validation fails â†’ CRITICAL security alert
+4. ALERT: If L2 validation fails → CRITICAL security alert
 ```
 
 ```yaml
@@ -1789,7 +1789,7 @@ submits a bad output root and it's not challenged, withdrawals based on that roo
    - Get blockHash from L2 block
    - Compute: keccak256(version || stateRoot || storageRoot || blockHash)
 3. COMPARE: claimed rootClaim vs computed result
-4. ALERT: If mismatch â†’ CRITICAL fraud alert (challenger must act)
+4. ALERT: If mismatch → CRITICAL fraud alert (challenger must act)
 ```
 
 ```yaml
@@ -2820,7 +2820,7 @@ Useful for detecting stuck withdrawals or operational issues.
 3. CORRELATION: Match by withdrawalHash
 4. MODE: negative = Alert if A happens but B does NOT happen within window
 5. WINDOW: 24 hours
-6. ALERT: If withdrawal not proven after 24h â†’ informational alert
+6. ALERT: If withdrawal not proven after 24h → informational alert
 ```
 
 ```yaml
@@ -2935,7 +2935,7 @@ They detect liveness issues, patterns, and anomalies but do not indicate active 
 **Moved to Phase 2:**
 - Sequencer batch submission absence (liveness)
 - Unsafe/safe head lag (operational health)
-- L1â†’L2 deposit relay delays (operational)
+- L1→L2 deposit relay delays (operational)
 - Cross-chain state drift (consistency)
 - Flash loan burst detection (DeFi operational)
 - Bond/credit discrepancy (accounting)
@@ -3030,9 +3030,9 @@ Some monitors require stateful tracking across multiple entities (e.g., active d
 **Use Case:** Track ALL active dispute games and alert if any becomes unresolvable.
 
 **Phase 2 Requirements:**
-- `rule_kind: stateful` â€” Maintains entity state in Redis
-- `historical_events()` â€” Query past events to reconstruct state on startup
-- State management API â€” Track lifecycle (created â†’ updated â†’ resolved)
+- `rule_kind: stateful` — Maintains entity state in Redis
+- `historical_events()` — Query past events to reconstruct state on startup
+- State management API — Track lifecycle (created → updated → resolved)
 
 ```yaml
 version: 1
@@ -3040,7 +3040,7 @@ version: 1
 name: dispute_game_lifecycle_tracker
 description: |
   STATEFUL MONITOR: Maintains state for all active dispute games.
-  Tracks: creation â†’ moves â†’ resolution
+  Tracks: creation → moves → resolution
   Alerts: unresolved games past deadline, challenger losses
 priority: P1
 tags:
@@ -3227,7 +3227,7 @@ Walnut targets users who want declarative configuration (YAML) without writing c
 4. **No Vendor Lock-in**: YAML + expr-lang (open standards) vs proprietary languages
 5. **State Validation**: Native eth_getProof for any EVM chain
 6. **Open Architecture**: Pluggable threat intel, delivery channels, chain adapters
-7. **Cross-Chain Native**: L1â†”L2, L2â†”L2, heterogeneous chain correlation built-in
+7. **Cross-Chain Native**: L1↔L2, L2↔L2, heterogeneous chain correlation built-in
 
 ---
 
@@ -3240,10 +3240,10 @@ Walnut targets users who want declarative configuration (YAML) without writing c
 Design Partner: Optimism Foundation  
 Validation Focus: L2 rollup security monitors (applicable to any optimistic rollup)
 
-Phase 1 capabilities are chain-agnostic â€” the same DSL and architecture supports:
+Phase 1 capabilities are chain-agnostic — the same DSL and architecture supports:
 - Any EVM L1 (Ethereum, BNB, Avalanche, Polygon)
 - Any EVM L2 (Optimism, Arbitrum, Base, zkSync, Scroll)
-- Any cross-chain correlation (L1â†”L2, L2â†”L2, bridge protocols)
+- Any cross-chain correlation (L1↔L2, L2↔L2, bridge protocols)
 
 #### Deliverables
 
@@ -3253,7 +3253,7 @@ Phase 1 capabilities are chain-agnostic â€” the same DSL and architecture s
 | **M1.2** | Network Subscriber Service (Infura/Alchemy WS) | W4 |
 | **M1.3** | Event Router with Bloom filter pre-check | W6 |
 | **M1.4** | Alert Service (realtime rules) | W8 |
-| **M1.5** | Basic cross-chain correlation engine (L1â†”L2) | W9 |
+| **M1.5** | Basic cross-chain correlation engine (L1↔L2) | W9 |
 | **M1.6** | eth_getProof integration (basic, for withdrawal validation) | W10 |
 | **M1.7** | Output root computation (basic, for dispute game validation) | W11 |
 | **M1.8** | Delivery Channel Service (Slack, Webhook, PagerDuty) | W11 |
@@ -3316,7 +3316,7 @@ validation:
 
 ### Phase 2: Cross-Chain & Patterns (Months 4-6)
 
-**Objective:** Full cross-chain correlation (L2â†”L2, heterogeneous chains), windowed pattern detection, 
+**Objective:** Full cross-chain correlation (L2↔L2, heterogeneous chains), windowed pattern detection, 
 and advanced fault proof monitoring. Expands on Phase 1's basic cross-chain capabilities.
 
 #### Deliverables
@@ -3368,7 +3368,7 @@ cross_chain:
 
 #### Success Criteria
 
-- [ ] Cross-chain correlation working for OPâ†”Ethereum
+- [ ] Cross-chain correlation working for OP↔Ethereum
 - [ ] eth_getProof validation operational
 - [ ] 10+ production monitors deployed
 - [ ] False positive rate <1%
@@ -3587,7 +3587,7 @@ These are lower priority than security monitors but valuable for overall system 
 | Security Council Signature Timeout | windowed/absence | Alert when SC tx pending >24h |
 | Sequencer Batch Absence | windowed/absence | No batches for 30+ minutes |
 | Unsafe/Safe Head Lag | periodic | Large gap between heads |
-| L1â†’L2 Deposit Relay Delay | cross_chain/negative | Deposit not relayed in 20m |
+| L1→L2 Deposit Relay Delay | cross_chain/negative | Deposit not relayed in 20m |
 | Cross-Chain State Drift | periodic/multi_chain | Config mismatch across chains |
 | Flash Loan Burst | windowed/count | 10+ flash loans in 5 minutes |
 | Bond/Credit Discrepancy | windowed/aggregation | Accounting anomalies |
